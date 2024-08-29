@@ -42,7 +42,6 @@ ceButton.addEventListener('click', () => {
   }
 });
 
-// Simplified equals functionality
 equalsButton.addEventListener('click', () => {
   if (!expression) {
     resultElement.innerHTML = '0';
