@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css?family=Audiowide');
+
+.body {
+  width: 350px;
+  margin: 40px auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 20px;
+  background: #333;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+}
+
+.results {
+  width: 92.3%;
+  margin: 20px auto;
+  font-family: 'Audiowide', cursive;
+  text-align: right;
+  padding: 10px;
+  background: #444;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px rgba(0,0,0,0.1);
+}
+
+#expression, #result {
+  background: #444;
+  border: none;
+  border-radius: 4px;
+  padding: 10px;
+  font-size: 18px;
+  color: #fff;
+}
+
+#result {
+  height: 50px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+#expression {
+  height: 20px;
+  color: #666;
+}
+
+.numbers {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.operations, .clears {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.operations * {
+  font-size: 18px;
+  color: #fff;
+}
+
+.clears * {
+  background: #EF5350;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 18px;
+}
+
+button {
+  border: none;
+  border-radius: 5px;
+  width: 50px;
+  height: 50px;
+  margin: 5px;
+  text-align: center;
+  outline: none;
+  font-family: 'Audiowide', cursive;
+  transition: transform 0.2s;
+  background: #555;
+  color: #fff;
+}
+
+button:hover {
+  transform: scale(1.1);
+  box-shadow: 0px 0px 5px rgba(0,0,0,0.2);
+}
+
+button:active {
+  transform: translateY(2px);
+  box-shadow: 0px 0px 5px rgba(0,0,0,0.1);
+}
