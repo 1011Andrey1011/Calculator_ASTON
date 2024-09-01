@@ -58,8 +58,13 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function handlePercentage() {
-        currentInput = (parseFloat(currentInput) / 100).toString();
-        updateDisplay(currentInput);
+        if (currentInput) {
+            const value = parseFloat(currentInput);
+            if (isNaN(value)) return;
+
+            currentInput = (value / 100).toString();
+            updateDisplay(currentInput);
+        }
     }
 
     function handleEquals() {
