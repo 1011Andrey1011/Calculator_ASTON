@@ -1,78 +1,71 @@
-const resultElement = document.querySelector('#result'),
-      expressionElement = document.querySelector('#expression'),
-      numberButtons = document.querySelectorAll('.number:not(.equals)'),
-      operationButtons = document.querySelectorAll('.operation'),
-      equalsButton = document.querySelector('.equals'),
-      clearButton = document.querySelector('#clear'),
-      ceButton = document.querySelector('#ce');
+document.addEventListener('DOMContentLoaded', function() {
+    const output = document.getElementById('output');
+    let currentInput = '';
+    let previousInput = '';
+    let operator = '';
 
-let expression = '';
+    document.querySelectorAll('.button').forEach(button => {
+        button.addEventListener('click', function() {
+            const value = this.innerText;
 
-resultElement.innerHTML = '0';
+            if (value >= '0' && value <= '9') {
+                currentInput += value;
+                updateDisplay(currentInput);
+            } else if (value === '.') {
+                if (!currentInput.includes('.')) {
+                    currentInput += value;
+                    updateDisplay(currentInput);
+                }
+            } else if (value === 'AC') {
+                clearCalculator();
+            } else if (value === '←') {
+                currentInput = currentInput.slice(0, -1);
+                updateDisplay(currentInput || '0');
+            } else if (value === '%') {
+                currentInput = (parseFloat(currentInput) / 100).toString();
+                updateDisplay(currentInput);
+            } else if (value === '=' && operator) {
+                currentInput = operate(operator, previousInput, currentInput).toString();
+                operator = '';
+                updateDisplay(currentInput);
+            } else if (['+', '-', '×', '/'].includes(value)) {
+                if (operator) {
+                    currentInput = operate(operator, previousInput, currentInput).toString();
+                    updateDisplay(currentInput);
+                }
+                operator = value;
+                previousInput = currentInput;
+                currentInput = '';
+            }
+        });
+    });
 
-function handleNumberClick(event) {
-  const number = event.target.id;
-  expression += number;
-  updateExpression(expression);
-  updateResult(expression);
-}
+    function updateDisplay(value) {
+        output.innerText = value;
+    }
 
-function handleOperationClick(event) {
-  const operation = event.target.id;
-  if (!expression) return;
-  expression += operation;
-  updateExpression(expression);
-  updateResult(operation);
-}
+    function clearCalculator() {
+        currentInput = '';
+        previousInput = '';
+        operator = '';
+        updateDisplay('0');
+    }
 
-numberButtons.forEach(button => button.addEventListener('click', handleNumberClick));
-operationButtons.forEach(button => button.addEventListener('click', handleOperationClick));
+    function operate(operator, num1, num2) {
+        const a = parseFloat(num1);
+        const b = parseFloat(num2);
 
-clearButton.addEventListener('click', () => {
-  expression = '';
-  resultElement.innerHTML = '';
-  expressionElement.innerHTML = '';
+        switch (operator) {
+            case '+':
+                return a + b;
+            case '-':
+                return a - b;
+            case '×':
+                return a * b;
+            case '/':
+                return a / b;
+            default:
+                return b;
+        }
+    }
 });
-
-ceButton.addEventListener('click', () => {
-  if (!expression.endsWith('=')) {
-    expression = removeLastToken(expression);
-    expressionElement.innerHTML = expression;
-    resultElement.innerHTML = '0';
-  }
-});
-
-equalsButton.addEventListener('click', () => {
-  if (!expression) {
-    resultElement.innerHTML = '0';
-  } else {
-    expression += '=';
-    expressionElement.innerHTML = expression;
-    const result = evaluateExpression(expression);
-    resultElement.innerHTML = formatResult(result);
-  }
-});
-
-function updateExpression(newExpression) {
-  expressionElement.innerHTML = newExpression;
-}
-
-function updateResult(newResult) {
-  resultElement.innerHTML = newResult;
-}
-
-function removeLastToken(expression) {
-  return expression.split(/([\/\*\+\-\=])/g).slice(0, -1).join('');
-}
-
-function evaluateExpression(expression) {
-  return eval(expression.replace(/=/, ''));
-}
-
-function formatResult(result) {
-  if (result.toString().length > 14) {
-    return parseFloat(result.toPrecision(12)).toString();
-  } else {
-    return result.toString();
-  }
-}
