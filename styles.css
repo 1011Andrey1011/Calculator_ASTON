@@ -3,71 +3,94 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
+    background-color: #e0e0e0;
     margin: 0;
-    background-color: #f3f3f3;
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .calculator {
-    border-radius: 20px;
-    background-color: #d1d1d1;
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+    background-color: #2d2d2d;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    width: 320px;
 }
 
-.display {
-    background-color: black;
-    border-radius: 20px 20px 0 0;
-    padding: 20px;
-    font-size: 2em;
-    color: white;
+.output {
+    background-color: #1e1e1e;
+    color: #32cd32;
+    font-size: 2.8rem;
     text-align: right;
-}
-
-#output {
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
+    padding: 20px;
+    height: 80px;
+    border-radius: 12px 12px 0 0;
+    box-sizing: border-box;
 }
 
 .buttons {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
-    padding: 20px;
+    grid-gap: 1px;
+    padding: 1px;
+    background-color: #3a3a3a;
 }
 
 .button {
-    font-size: 1.5em;
     padding: 20px;
+    background-color: #4a4a4a;
     border: none;
-    border-radius: 10px;
-    background-color: #767676;
-    color: white;
+    color: #f0f0f0;
+    font-size: 1.6rem;
+    text-align: center;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
-.button:hover {
+.button:active {
     background-color: #5a5a5a;
+    transform: scale(0.95);
 }
 
-#clear {
-    background-color: #f05d5e;
+.button.operator {
+    background-color: #f57c00;
+    color: #ffffff;
 }
 
-#backspace {
-    background-color: #ffbb00;
+.button.operator:active {
+    background-color: #e67e22;
 }
 
-#equals {
-    background-color: #4CAF50;
-    grid-column: span 2;
+.button.clear {
+    background-color: #e53935;
+    color: #ffffff;
 }
 
-#equals:hover {
-    background-color: #45a049;
+.button.clear:active {
+    background-color: #d32f2f;
 }
 
-#add, #subtract, #multiply, #divide, #percent {
-    background-color: #00bcd4;
+.button.backspace {
+    background-color: #fb8c00;
+    color: #ffffff;
+}
+
+.button.backspace:active {
+    background-color: #f57c00;
+}
+
+.button.equals {
+    background-color: #388e3c;
+    color: #ffffff;
+    grid-column: span 2; 
+}
+
+.button.equals:active {
+    background-color: #2e7d32;
+}
+
+.button.zero {
+    grid-column: span 1; 
+}
+
+.button:focus {
+    outline: none;
 }
