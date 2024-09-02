@@ -1,23 +1,42 @@
+:root {
+    --primary-color: #e0e0e0;
+    --calc-color: #2d2d2d;
+    --output-color: #1e1e1e;
+    --digits-color: #32cd32;
+    --buttons-color: #3a3a3a;
+    --buttons-hover-color: #4a4a4a;
+    --buttons-pressed-color: #f0f0f0;
+    --text-color: #5a5a5a;
+    --text-hover-color: #f57c00;
+    --text-pressed-color: #ffffff;
+    --text-pressed-active: #e67e22;
+    --clear-button-color: #e53935;
+    --clear-active-button-color: #d32f2f;
+    --backspace-color: #fb8c00;
+    --equals-color: #388e3c;
+    --equals-active-color: #2e7d32;
+}
+
 body {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #e0e0e0;
+    background-color: var(--primary-color);
     margin: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .calculator {
-    background-color: #2d2d2d;
+    background-color: --calc-color;
     border-radius: 12px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
     width: 320px;
 }
 
 .output {
-    background-color: #1e1e1e;
-    color: #32cd32;
+    background-color: var(--output-color);
+    color: var(--digits-color);
     font-size: 2.8rem;
     text-align: right;
     padding: 20px;
@@ -31,14 +50,14 @@ body {
     grid-template-columns: repeat(4, 1fr);
     grid-gap: 1px;
     padding: 1px;
-    background-color: #3a3a3a;
+    background-color: var(--buttons-color);
 }
 
 .button {
     padding: 20px;
-    background-color: #4a4a4a;
+    background-color: var(--buttons-hover-color);
     border: none;
-    color: #f0f0f0;
+    color: var(--buttons-pressed-color);
     font-size: 1.6rem;
     text-align: center;
     cursor: pointer;
@@ -46,45 +65,45 @@ body {
 }
 
 .button:active {
-    background-color: #5a5a5a;
+    background-color: var(--text-color);
     transform: scale(0.95);
 }
 
 .button.operator {
-    background-color: #f57c00;
-    color: #ffffff;
+    background-color: var(--text-hover-color);
+    color: var(--text-pressed-color);
 }
 
 .button.operator:active {
-    background-color: #e67e22;
+    background-color: var(--text-pressed-active)
 }
 
 .button.clear {
-    background-color: #e53935;
-    color: #ffffff;
+    background-color: var(--clear-button-color);
+    color: var(--text-pressed-color);
 }
 
 .button.clear:active {
-    background-color: #d32f2f;
+    background-color: var(--clear-active-button-color)
 }
 
 .button.backspace {
-    background-color: #fb8c00;
-    color: #ffffff;
+    background-color: var(--backspace-color);
+    color: var(--text-pressed-color);
 }
 
 .button.backspace:active {
-    background-color: #f57c00;
+    background-color: var(--text-hover-color);
 }
 
 .button.equals {
-    background-color: #388e3c;
-    color: #ffffff;
+    background-color: var(--equals-color);
+    color: var(--text-pressed-color);
     grid-column: span 2; 
 }
 
 .button.equals:active {
-    background-color: #2e7d32;
+    background-color: var(--equals-active-color);
 }
 
 .button.zero {
