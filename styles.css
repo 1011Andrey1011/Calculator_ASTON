@@ -37,6 +37,9 @@ body {
 .output {
     background-color: var(--output-color);
     color: var(--digits-color);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
     font-size: 2.8rem;
     text-align: right;
     padding: 20px;
